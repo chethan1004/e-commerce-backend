@@ -52,3 +52,20 @@ it will fetch the data from the Repository layer
 
 
 ******************* 4th version **************************
+
+sometimes it is better to send the status code also because if something went wrong then by checking the status code we can analyse what is the problem and where we have t debug 
+
+in this we updated the 
+
+    @GetMapping("/products")
+    public ResponseEntity<List<Product>> getAllProducts(){
+        return new ResponseEntity<>(service.getAllProducts(), HttpStatus.FOUND);
+    }
+
+it will send the data and at the same time it will send 302 status code 
+302 -> FOUND
+
+OK -> 200
+NOT_FOUND -> 404 // famous error 
+
+from now onwards we should send the data along with status code 

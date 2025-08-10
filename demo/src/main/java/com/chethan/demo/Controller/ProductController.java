@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.apache.catalina.startup.ClassLoaderFactory.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,9 +31,9 @@ class productController {
    
     
 
-     @GetMapping("/products")
-    public List<Product> getAllProducts(){
-        return service.getAllProducts();
+    @GetMapping("/products")
+    public ResponseEntity<List<Product>> getAllProducts(){
+        return new ResponseEntity<>(service.getAllProducts(), HttpStatus.FOUND);
     }
 
     @GetMapping("/products/{id}")
