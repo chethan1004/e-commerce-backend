@@ -69,3 +69,42 @@ OK -> 200
 NOT_FOUND -> 404 // famous error 
 
 from now onwards we should send the data along with status code 
+
+
+**************** 5th version ********************
+
+here we implemented Post method in the controller layer to accept the data from the front end 
+ow it will send to the service layer and saying save in the database 
+
+    @PostMapping("/product")
+    public ResponseEntity<?> addProduct(@RequestBody Product product){
+        try {
+            
+            Product product1 = service.addProduct(product);
+            return new ResponseEntity<>(product1, HttpStatus.CREATED);
+        }
+        catch(Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+    }
+
+and in ther service layer
+
+    public Product addProduct(Product product) {
+        return repo.save(product);
+    }
+
+now in the postman i choose Post method and used url 
+localhost:8080/api/product
+
+and in the body -> raw -> json at the end of taht line 
+
+{
+    "name": "Catberry",
+    "description": "Comes in box",
+    "price": 30.0,
+    "quantity": 100
+}
+just added this and enter 
+here no need of adding the id because it will create id itself 

@@ -14,6 +14,8 @@ import com.chethan.demo.Service.ProductService;
 import com.chethan.demo.model.Product;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -39,6 +41,20 @@ class productController {
     @GetMapping("/products/{id}")
     public Product getproduct(@PathVariable Long id) {
         return service.getproductById(id);
+    }
+
+    @PostMapping("/product")
+    public ResponseEntity<?> addProduct(@RequestBody Product product){
+        try {
+            
+            Product product1 = service.addProduct(product);
+            return new ResponseEntity<>(product1, HttpStatus.CREATED);
+        }
+        catch(Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+
     }
     
 }
