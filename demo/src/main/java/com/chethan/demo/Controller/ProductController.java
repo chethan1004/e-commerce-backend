@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.chethan.demo.Service.ProductService;
 import com.chethan.demo.model.Product;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -31,6 +32,11 @@ class productController {
      @GetMapping("/products")
     public List<Product> getAllProducts(){
         return service.getAllProducts();
+    }
+
+    @GetMapping("/products/{id}")
+    public Product getproduct(@PathVariable Long id) {
+        return service.getproductById(id);
     }
     
 }
