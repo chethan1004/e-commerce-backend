@@ -108,3 +108,38 @@ and in the body -> raw -> json at the end of taht line
 }
 just added this and enter 
 here no need of adding the id because it will create id itself 
+
+
+and implemented two more methods put(update) and delete method that will update and delete the elements in the database 
+code for update and delete in the controller layer is 
+
+
+    @PutMapping("/products")
+    public void updateproduct(@RequestBody Product id){
+        service.updateproduct(id);
+
+    }
+
+
+    @DeleteMapping("/products/{id}")
+    public void deleteproduct(@PathVariable Long id) {
+        service.deleteproduct(id);
+    }
+
+and code in the service layer is 
+
+    public void updateproduct(Product id) {
+        repo.save(id);
+    }
+
+    public void deleteproduct(Long id) {
+        repo.deleteById(id);
+    }
+
+
+here the end of all the crud operatuions 
+
+create , read , update , delete 
+
+
+******************* 6th version ******************
