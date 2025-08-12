@@ -143,3 +143,41 @@ create , read , update , delete
 
 
 ******************* 6th version ******************
+
+implemented search option also now we can search any element by there variables except id 
+
+code for that is in the repo , service , controller is 
+
+@Query("SELECT p FROM Product p WHERE " +
+           "(:name IS NULL OR LOWER(p.name) LIKE LOWER(CONCAT('%', :name, '%'))) AND " +
+           "(:description IS NULL OR LOWER(p.description) LIKE LOWER(CONCAT('%', :description, '%'))) AND " +
+           "(:price IS NULL OR p.price = :price) AND " +
+           "(:quantity IS NULL OR p.quantity = :quantity)")
+    List<Product> searchProducts(@Param("name") String name,
+                                 @Param("description") String description,
+                                 @Param("price") Double price,
+                                 @Param("quantity") Integer quantity);
+
+
+in service layer is 
+
+    public List<Product> searchProducts(String name, String description, Double price, Integer quantity) {
+        return repo.searchProducts(name, description, price, quantity);
+    }
+
+
+in controller layer is 
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Product>> searchProducts(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String description,
+            @RequestParam(required = false) Double price,
+            @RequestParam(required = false) Integer quantity) {
+
+        List<Product> results = service.searchProducts(name, description, price, quantity);
+        return ResponseEntity.ok(results);
+    }
+
+
+****************** 7th version ************

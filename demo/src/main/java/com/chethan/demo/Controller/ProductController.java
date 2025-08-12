@@ -71,4 +71,16 @@ class productController {
         service.deleteproduct(id);
     }
 
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Product>> searchProducts(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String description,
+            @RequestParam(required = false) Double price,
+            @RequestParam(required = false) Integer quantity) {
+
+        List<Product> results = service.searchProducts(name, description, price, quantity);
+        return ResponseEntity.ok(results);
+    }
+
 }
