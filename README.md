@@ -1,7 +1,7 @@
 ************ 1st version *****************
 
 here just added the spring boot ready made application 
-no changed done in the project 
+no changes done in the project 
 
 
 
@@ -21,7 +21,7 @@ Repository -> ProductRepository
 3 layer architecture 
 now ProductRepository is interface just exteded the JpaRepository class
 now i created ProductService.java file in this dependecy injection is done from the ProductRepository
-now i created a ProductController.java class in that dependecy injection is done from the ProductService
+now i created a ProductController.java class , in that dependecy injection is done from the ProductService
 now using api's we can fetch the data to the frontend 
 
 in model folder i created a Products class in that database entity is created with the data 
@@ -29,7 +29,7 @@ in model folder i created a Products class in that database entity is created wi
 data flow 
  database -> repository layes -> service layer -> controller layer -> frontend 
 
-in this we just added get method and i created an Rest API theta will fetch the data from the controller layer to frontend
+in this we just added get method and i created an Rest API that will fetch the data from the controller layer to frontend
 
 
 
